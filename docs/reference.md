@@ -33,3 +33,18 @@ of `auth` are:
       > (*) -> optional fields
     * `preupdate_queies` : *array of string* <br>
       The list of queries to be executed before deleting the tables whenever the structure changes (i.e. `version` does not match).
+
+### Properties
+> This lists only the properties that are "useful" the class may have other properties as well which are used for logics within
+the class
+
+* `sql`: *sync-mysql*<br>
+  This property refers to the `sync-mysql` reference that the class uses. This property can be used to run raw queries when the Query class may seem insufficent.
+  
+### Methods
+> This lists only the methods that are "useful" the class may have other methods as well which are used for logics within
+the class
+
+* `getTable(table_name)`:<br>
+  returns a `Table` refernce referring to the Table with name `table_name`. 
+  > Note that `table_name` is checked in the `struct` and not in the database. Therefore if the database had a table which is not described in `struct` it cannot be accessed using `getTable()`. Use the `Table` class instead.
