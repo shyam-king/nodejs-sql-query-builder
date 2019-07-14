@@ -23,11 +23,11 @@ of `auth` are:
       therefore it may cause errors.
       
   * other fields:
-    * `tables`: `array` containing fields
-      * `name`: `string` - name of the table
-      * `columns`: `array` containing fields
-        * `name`: `string` - name of the column
-        * `tyoe`: `string` - MySQL DATATYPE
-        * `constraints` (*) : `string` - constraints for the column
-      * `primary_key` (*): `string` - name of the column (or) `array of string` - name of the columns
+    * `tables`: *array* containing fields
+      * `name`: *string* - name of the table
+      * `columns`: *array* containing fields
+        * `name`: *string* - name of the column
+        * `type`: *string* - MySQL DATATYPE
+        * `constraints` (*) : *string* - constraints for the column
+      * `primary_key` (*): *string* - name of the column (or) *array of string* - name of the columns
       > (*) -> optional fields
