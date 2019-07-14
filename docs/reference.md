@@ -48,4 +48,4 @@ the class
 * `getTable(table_name)`:<br>
   returns a `Table` reference referring to the Table with name `table_name`. 
   
-  > Note that `table_name` is checked in the `Database.struct` and not in the database. Therefore if the database had a table which is not described in `struct` it cannot be accessed using `getTable()`. Use `createTable()` instead.
+  > Note that `table_name` is checked in the `Database.struct` and not in the database. Therefore if the database had a table which is not described in `struct` it cannot be accessed using `getTable()`. Use `createTable()` to add the table to `Database.struct` before calling `getTable()`.
