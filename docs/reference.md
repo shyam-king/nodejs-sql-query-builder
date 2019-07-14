@@ -4,10 +4,10 @@
 ### constructor (auth, struct)
 The constructor creates a internal sql reference `Database.sql` of `sync-mysql` type using the values in `auth`. The required fields
 of `auth` are:
-  * user: username of MySQL database
-  * host: Server hosting MySQL
-  * password: password for user if applicable
-  * database: database to be managed
+  * `user`: username of MySQL database
+  * `host`: Server hosting MySQL
+  * `passsword`: password for user if applicable
+  * `database`: database to be managed
 
 `struct` describes the general structure of the database. The fields include:
   * required:
@@ -31,3 +31,5 @@ of `auth` are:
         * `constraints` (*) : *string* - constraints for the column
       * `primary_key` (*): *string* - name of the column (or) *array of string* - name of the columns
       > (*) -> optional fields
+    * `preupdate_queies` : *array of string* <br>
+      The list of queries to be executed before deleting the tables whenever the structure changes (i.e. `version` does not match).
