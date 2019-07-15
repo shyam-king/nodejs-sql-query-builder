@@ -86,11 +86,11 @@
         }
 
         getQuery() {
-            let q = new Query(this.sql, this.table);
-            q.selection = this.selection;
-            q.where_clause = this.where_clause;
-            q.order = this.order;
-            return q;
+            // let q = new Query(this.sql, this.table);
+            // q.selection = this.selection;
+            // q.where_clause = this.where_clause;
+            // q.order = this.order;
+            return Object.create(this);
         }
     }
 

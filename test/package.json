@@ -9,6 +9,6 @@
   "author": "shyam-king",
   "license": "ISC",
   "dependencies": {
-    "sync-mysql-database": "^1.5.5"
+    "sync-mysql-database": "^1.6.1"
   }
 }

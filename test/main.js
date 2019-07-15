@@ -12,4 +12,4 @@ let ids = users.select("id");
 database.updateDatabase();
 
 let user_data_table = database.getTable("user_data").query();
-console.log(user_data_table.get());
+console.log(user_data_table.where("name = 'SHYAM'").get());
