@@ -57,3 +57,6 @@ the class
 
 * `createNewTable(struct): Table`<br>
   Same as `createTable()` but deletes the table with the same name in the database if it already exists.
+
+## class Table
+> The constructor is not described here because the user cannot instantiate an instance of `Table` direcetly. To obtain an instance of `Table` use one of the `createTable()`, `createNewTable()`, `getTable()` methods of `Database` class.
