@@ -2,7 +2,7 @@
 
 ## class `Database`
 ### constructor (auth, struct)
-The constructor creates a internal sql reference `Database.sql` of `sync-mysql` type using the values in `auth`. The required fields
+The constructor creates a internal sql reference `Database.sql` of `sync-mysql` type using the values in `auth`. The **required** fields
 of `auth` are:
   * `user`: username of MySQL database
   * `host`: Server hosting MySQL
@@ -59,18 +59,18 @@ the class
   Same as `createTable()` but deletes the table with the same name in the database if it already exists.
 
 ## class `Table`
-> The constructor is not described here because the user cannot instantiate an instance of `Table` direcetly. To obtain an instance of `Table` use one of the `createTable()`, `createNewTable()`, `getTable()` methods of a `Database` instance.
+> The constructor is not described here because the user cannot instantiate an instance of `Table` directly. To obtain an instance of `Table` use one of the `createTable()`, `createNewTable()`, `getTable()` methods of a `Database` instance.
 
 ### Methods
 
 * `row(id): Array`<br>
-  returns an array containing a single rows of the table with `primary_key` matching with `id`. If there is no primary_key, nothing is returned (`undefined`).
+  returns an array containing a single row of the table with `primary_key` matching with `id`. If there is no `primary_key`, nothing is returned (`undefined`).
 
 * `query(): Query`<br>
   returns an instance of `Query` class that can be used to run queries on the table.
 
 ## class `Query`
-> The constructor is not described here because the user cannot instantiate an instance of `Query` direcetly. To obtain an instance of `Query` use `query()` method of a `Table` instance. The `Query` instance returned is '"bound to" the corresponding `Table`.
+> The constructor is not described here because the user cannot instantiate an instance of `Query` directly. To obtain an instance of `Query` use `query()` method of a `Table` instance. The `Query` instance returned is '"bound to" the corresponding `Table`.
 
 ### Overview
 The `Query` class is used to run a MySQL query on the corresponding table. All queries are run on the table that the instance is bound to.<br>
