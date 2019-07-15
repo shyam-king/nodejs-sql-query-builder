@@ -39,7 +39,7 @@ of `auth` are:
 the class
 
 * `sql`: *sync-mysql*<br>
-  This property refers to the `sync-mysql` reference that the class uses. This property can be used to run raw queries when the Query class may seem insufficent.
+  This property refers to the `sync-mysql` reference that the class uses. This property can be used to run raw queries when the Query class may seem insufficent. [sync-mysql package details](https://www.npmjs.com/package/sync-mysql)
   
 ### Methods
 > This lists only the methods that are "useful" the class may have other methods as well which are used for logics within
