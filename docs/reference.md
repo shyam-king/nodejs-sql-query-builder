@@ -107,6 +107,8 @@ query1.delete();
 
 ### Methods
 
+  > Methods that return `Query` instances can be used to chain calls.
+
   * `select(... args): Query`<br>
     applies projection operation (selecting columns) using `args`. `args` represent the column names.
     The returned `Query` instance has the selection applied which can be used for further chaining or running the query. If a `Query` instance has had no calls to `select()`, all columns are projected by default.
@@ -139,7 +141,41 @@ query1.delete();
       ```JS 
       ... query().where("cond1").where("cond2").where("cond3")...
       ```
-    > result to a SQL WHERE clause:
+    > results to a SQL WHERE clause:
       ```sql
-      WHERE (((cond1) AND cond2) AND cond3)...
+      ... WHERE (((cond1) AND cond2) AND cond3)...
       ```
+
+  * `orderby(col, order): Query`<br>
+    sorts the returned rows. `col` represents the column to be used for sorting. `order` represents the order to sort in (`"asc"` or `"desc"`). If `order` is not specified, it is `"asc"` by default. 
+
+    ```JS
+    ... query().select("username", "id").orderby("username");
+    ```
+
+    Subsequent calls to `orderby()` describes secondary sorting rules when there is ambiguity.
+
+    ```JS
+    ... query().select("userame", "id").orderby("username").orderby("id", "desc");
+    ```
+
+  * `get(): Array`<br>
+    runs a SELECT query and returns the response.
+
+    ```JS
+    ... query().select("username").get();
+    ```
+  
+  * `delete()`<br>
+    runs a DELETE query and returns the response. Use `where()` method to select rows to delete. By default all rows will be deleted.
+
+    ```JS
+    ... query().where("age > 18").delete();
+    ```
+  
+  * `insert(.. args)`<br>
+    runs an INSERT query and returns the response. `args` represent the values to be inserted. Use `select()` to select columns to which values are being supplied. By default values to all the columns are expected. It returns the response after executing the query.
+
+    ```JS
+    ... query().select("username", "age").insert("some guy", 18);
+    ```

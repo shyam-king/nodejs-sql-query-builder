@@ -29,7 +29,11 @@
             return q;
         }
 
-        orderby(order, col) {
+        orderby(col, order) {
+            if (order == undefined) {
+                order = "asc";
+            }
+
             let q = this.getQuery();
             if (q.order == undefined) {
                 q.order = "";
