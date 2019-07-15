@@ -137,7 +137,7 @@ query1.delete();
     database.getTable("sampleTable").query().where("age > 18 AND gender = 'F'").get();
     ```
 
-    > The multiple `where()` calls result in a where class in the following way:
+    > The multiple `where()` calls result in a where clause in the following way:
       ```JS 
       ... query().where("cond1").where("cond2").where("cond3")...
       ```
