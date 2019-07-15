@@ -1,2 +1,4 @@
 TODO: Database.updateStruct() 
     Synchronise table details from the database to the Database instance
+TODO: in Database.createTable() 
+    delete previous record in Database.struct
