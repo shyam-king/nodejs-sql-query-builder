@@ -1,1 +1,2 @@
-TODO: Database.createTable()
+TODO: Database.updateStruct() 
+    Synchronise table details from the database to the Database instance
