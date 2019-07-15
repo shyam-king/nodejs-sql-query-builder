@@ -49,4 +49,4 @@ console.log(sampleDatabase.getTable("users").query().get());
 ```
 
 ## Reference
-[Check docs/](docs/)
+[Check docs/](docs/reference.md)
