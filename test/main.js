@@ -6,4 +6,9 @@ const user_data = require("./DynamicTables/user_data.json");
 var database = new Database(auth, structure);
 
 database.createTable(user_data);
-console.log(database.getTable("user_data").query().get());
+let users = database.getTable("users").query();
+let names = users.select("username");
+let ids = users.select("id");
+console.log(ids.where("id > 5").get());
+console.log(ids.get());
+console.log(names.get());
