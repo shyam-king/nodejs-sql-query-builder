@@ -190,3 +190,5 @@ query1.delete();
     let age = table.query().where("username = 'some guy'").select("age", "username");
     age.update(age.getValue() + 1, "some guy but new");
     ```
+
+    > No errors are thorwn if more columns are selected compared to the number of values provided.
