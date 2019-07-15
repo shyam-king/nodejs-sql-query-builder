@@ -11,34 +11,38 @@
         }
 
         select(... selection) {
+            let q = this.getQuery();
             if (selection == undefined) {
-                this.selectAll();
+                q = q.selectAll();
             } 
-            this.selection = selection.join(",");
+            q.selection = selection.join(",");
             
-            return this;
+            return q;
         }
 
         where(where_clause) {
-            this.where_clause = " WHERE " + where_clause;
-            return this;
+            let q = this.getQuery();
+            q.where_clause = " WHERE " + where_clause;
+            return q;
         }
 
         orderby(order, col) {
-            if (this.order == undefined) {
-                this.order = "";
+            let q = this.getQuery();
+            if (q.order == undefined) {
+                q.order = "";
             }
             else {
-                this.order+= ", ";
+                q.order+= ", ";
             }
 
-            this.order += `${col} ${order}`;
-            return this;
+            q.order += `${col} ${order}`;
+            return q;
         }
 
         selectAll() {
-            this.selection = "*";
-            return this;
+            let q = this.getQuery();
+            q.selection = "*";
+            return q;
         }
 
         get() {
@@ -72,6 +76,14 @@
 
             this.query = `INSERT INTO ${this.table}(${(this.selection == "*") ? "" : this.selection}) VALUES (${values.join(",")});`;
             return this.sql.query(this.query);
+        }
+
+        getQuery() {
+            let q = new Query(this.sql, this.table);
+            q.selection = this.selection;
+            q.where_clause = this.where_clause;
+            q.order = this.order;
+            return q;
         }
     }
 
