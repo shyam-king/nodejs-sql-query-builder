@@ -154,22 +154,11 @@
 
         createTables () {
             this.struct.tables.forEach(element => {
-                let q = `CREATE TABLE IF NOT EXISTS ${element.name} (`;
-                element.columns.forEach((column, index, array) => {
-                    q += `${column.name} ${column.type} ${(column.constraints != undefined)?column.constraints:""}`;
-                    if (index < array.length - 1) q += ',';
-                });
-                if (element.primary_key != undefined) {
-                    q += `, primary key (${element.primary_key})`;
-                }
-                q += ');'
-    
-                this.sql.query(q);
+                this.createTable(element);
             });
         };
     
         deleteTables() {
-            console.log(`The database ${auth.database} is being cleared prior to updating structure.`);
             let q = 'DROP TABLE IF EXISTS <tablename>;';
             this.struct.tables.forEach((element)=>{
                 this.sql.query(q.replace("<tablename>", element.name));
@@ -187,8 +176,17 @@
             if (struct.primary_key != undefined) {
                 q += `, primary key (${struct.primary_key})`;
             }
+            
+            if (struct.constraints != undefined) {
+                if (struct.constraints.Array)
+                    q += ", " + struct.constraints.join(", ");
+                else 
+                    q += ", " + struct.constraints;
+            } 
+            
             q += ');';
 
+        
             this.sql.query(q);
 
             return new Table(this.sql, struct.name, struct);

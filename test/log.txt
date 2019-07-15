@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS users (id INTEGER auto_increment,username varchar(30) ,password char(64) , primary key (id, username));
+CREATE TABLE IF NOT EXISTS tokens (token int auto_increment,username varchar(30) ,expiry timestamp , primary key (token), FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE ON UPDATE CASCADE);
