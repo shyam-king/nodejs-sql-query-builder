@@ -54,3 +54,6 @@ the class
   Creates the table in the database if it does not already exist, adds the structure to `Database.struct` enabling access from `getTable()` method. Returns a `Table` reference referring to the new Table. 
 
   > **Note:** Suppose the database already contains a table with the name `struct.name`, it **will not be deleted**. Therefore, if the table in the database has a different structure compared to `struct` it may cause issues. (The support for updating `Database.struct` from the database will be added soon.) Use `createNewTable()` to delete the table if exists and create a new one following the `struct`. 
+
+* `createNewTable(struct): Table`<br>
+  Same as `createTable()` but deletes the table with the same name in the database if it already exists.

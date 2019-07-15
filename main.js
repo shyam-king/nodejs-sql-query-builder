@@ -183,7 +183,7 @@
             let q = "DROP TABLE IF EXISTS " + struct.name + ";";
             this.sql.query(q);
 
-            this.createTable(struct);
+            return this.createTable(struct);
         }
     }
 
