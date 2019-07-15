@@ -178,6 +178,13 @@
 
             return new Table(this.sql, struct.name, struct);
         }
+
+        createNewTable(struct) {
+            let q = "DROP TABLE IF EXISTS " + struct.name + ";";
+            this.sql.query(q);
+
+            this.createTable(struct);
+        }
     }
 
     module.exports.Database = Database;
