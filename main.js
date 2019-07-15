@@ -196,7 +196,17 @@
             let q = "DROP TABLE IF EXISTS " + struct.name + ";";
             this.sql.query(q);
 
+            this.updateStruct(struct);
+
             return this.createTable(struct);
+        }
+
+        updateStruct(struct) {
+            this.struct.tables.forEach((element, index, array)=>{
+                if (element.name == struct.name) {
+                    array[index] = struct;
+                }
+            });
         }
     }
 

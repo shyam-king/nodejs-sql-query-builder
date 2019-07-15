@@ -30,9 +30,11 @@ of `auth` are:
         * `type`: *string* - MySQL DATATYPE
         * `constraints` (*) : *string* - constraints for the column
       * `primary_key` (*): *string* - name of the column (or) *array of string* - name of the columns
-      > (*) -> optional fields
-    * `preupdate_queies` : *array of string* <br>
+      * `constraints` (*): *string* or *array of string* -> constraints to be applied (foreign key, etc.)
+    * `preupdate_queies` (*) : *array of string* <br>
       The list of queries to be executed before deleting the tables whenever the structure changes (i.e. `version` does not match).
+
+      > (*) : optional fields
 
 ### Properties
 > This lists only the properties that are "useful" the class may have other properties as well which are used for logics within
