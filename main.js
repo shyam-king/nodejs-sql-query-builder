@@ -85,11 +85,57 @@
             return this.sql.query(this.query);
         }
 
+        update (... vals) {
+            this.query = `UPDATE ${this.table} SET `
+
+            if (vals == undefined || vals.length < 1) {
+                throw "update() requires at least one value"
+            }
+
+            if (this.selection == "*") {
+                throw "update() cannot work without select()"
+            }
+
+            let selections = this.selection.split(",");
+            let set_clause = undefined;
+
+            if (selections.length < vals.length) {
+                throw "missing certain values";
+            }
+
+            vals.forEach((element, i) => {
+                if (typeof(element) == "string")
+                    element = `"${element}"`;
+
+                if (set_clause == undefined) {
+                    set_clause = "";
+                }
+                else {
+                    set_clause += ", "
+                }
+
+                set_clause += `${selections[i]} = ${element}`;
+            });
+
+            this.query += set_clause;
+
+            if (this.where_clause) 
+                this.query += ` WHERE ${this.where_clause}`;
+
+            this.query += ";";
+            return this.sql.query(this.query);
+        }
+
+        getValue() {
+            let value = this.get();
+            if (value.length == 0)
+                return undefined;
+                
+            let v = Object.values(value[0])[0];
+            return v;
+        }
+
         getQuery() {
-            // let q = new Query(this.sql, this.table);
-            // q.selection = this.selection;
-            // q.where_clause = this.where_clause;
-            // q.order = this.order;
             return Object.create(this);
         }
     }

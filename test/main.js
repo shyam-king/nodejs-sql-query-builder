@@ -11,5 +11,12 @@ let names = users.select("username");
 let ids = users.select("id");
 database.updateDatabase();
 
-let user_data_table = database.getTable("user_data").query();
-console.log(user_data_table.where("name = 'SHYAM'").get());
+let tokens = database.getTable("tokens").query();
+console.log (tokens.get());
+
+let shyam_token = tokens.where("username = 'shyam'").select("token");
+
+console.log(shyam_token.getValue());
+
+shyam_token.update(shyam_token.getValue() + 1);
+console.log(shyam_token.getValue());

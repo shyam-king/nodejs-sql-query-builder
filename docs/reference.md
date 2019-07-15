@@ -165,6 +165,9 @@ query1.delete();
     ```JS
     ... query().select("username").get();
     ```
+
+  * `getValue()`<br>
+    runs the SELECT query and returns the value of the first column of the first row. If the query results in no rows, then `undefined` is returned.
   
   * `delete()`<br>
     runs a DELETE query and returns the response. Use `where()` method to select rows to delete. By default all rows will be deleted.
@@ -178,4 +181,12 @@ query1.delete();
 
     ```JS
     ... query().select("username", "age").insert("some guy", 18);
+    ```
+
+  * `update(... vals)`<br>
+    updates the value of the column of rows selected using `where()`. The columns to update are set using the `select()` method. `update()` throws an error if there were no `select()` methods called or when insufficent columns were selected. `vals` describe the values to be set.
+
+    ```JS
+    let age = table.query().where("username = 'some guy'").select("age", "username");
+    age.update(age.getValue() + 1, "some guy but new");
     ```
