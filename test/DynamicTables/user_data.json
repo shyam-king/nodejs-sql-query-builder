@@ -1,0 +1,6 @@
+{
+    "name": "user_data",
+    "columns": [
+        {"name": "name", "type" : "varchar(30)"}
+    ]
+}

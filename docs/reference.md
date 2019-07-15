@@ -51,4 +51,6 @@ the class
   > Note that `table_name` is checked in the `Database.struct` and not in the database. Therefore if the database had a table which is not described in `struct` it cannot be accessed using `getTable()`. Use `createTable()` to add the table to `Database.struct` before calling `getTable()`.
 
 * `createTable(struct): Table`<br>
-  Creates the table in the database if it does not already exist, adds the structure to `Database.struct` enabling access from `getTable()` method. Returns a `Table` reference referring to the new Table.
+  Creates the table in the database if it does not already exist, adds the structure to `Database.struct` enabling access from `getTable()` method. Returns a `Table` reference referring to the new Table. 
+
+  > **Note:** Suppose the database already contains a table with the name `struct.name`, it **will not be deleted**. Therefore, if the table in the database has a different structure compared to `struct` it may cause issues. (The support for updating `Database.struct` from the database will be added soon.)
