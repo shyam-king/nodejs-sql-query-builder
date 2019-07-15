@@ -160,6 +160,24 @@
                 this.sql.query(q.replace("<tablename>", element.name));
             });
         }
+
+        createTable(struct) {
+            this.struct.tables.append(struct);
+            let q = `CREATE TABLE IF NOT EXISTS ${struct.name} (`;
+            struct.columns.forEach((column, index, array) => {
+                q += `${column.name} ${column.type} ${(column.constraints != undefined)?column.constraints:""}`;
+                if (index < array.length - 1) q += ',';
+            });
+
+            if (struct.primary_key != undefined) {
+                q += `, primary key (${struct.primary_key})`;
+            }
+            q += ');';
+
+            this.sql.query(q);
+
+            return new Table(this.sql, struct.name, struct);
+        }
     }
 
     module.exports.Database = Database;
