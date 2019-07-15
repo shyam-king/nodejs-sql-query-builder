@@ -22,7 +22,10 @@
 
         where(where_clause) {
             let q = this.getQuery();
-            q.where_clause = " WHERE " + where_clause;
+            if (q.where_clause)
+                q.where_clause = `(${q.where_clause}) AND ${where_clause}`;
+            else
+                q.where_clause = where_clause;
             return q;
         }
 
@@ -48,7 +51,7 @@
         get() {
             this.query = `SELECT ${this.selection} FROM ${this.table}`;
             if (this.where_clause) {
-                this.query += this.where_clause;
+                this.query += ` WHERE ${this.where_clause}`;
             }
             if (this.order) {
                 this.query += ` ORDER BY ${this.order}`;
