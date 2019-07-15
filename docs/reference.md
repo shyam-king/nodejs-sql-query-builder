@@ -191,4 +191,4 @@ query1.delete();
     age.update(age.getValue() + 1, "some guy but new");
     ```
 
-    > No errors are thorwn if more columns are selected compared to the number of values provided.
+    > No errors are thrown if more columns are selected compared to the number of values provided.
