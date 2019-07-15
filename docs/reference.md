@@ -104,3 +104,42 @@ query1.delete();
 ```
 
 > *Note:* These methods can be chained as well.
+
+### Methods
+
+  * `select(... args): Query`<br>
+    applies projection operation (selecting columns) using `args`. `args` represent the column names.
+    The returned `Query` instance has the selection applied which can be used for further chaining or running the query. If a `Query` instance has had no calls to `select()`, all columns are projected by default.
+
+    ```JS
+    //database is a Database instance
+    database.getTable("sampleTable").query().select("username").get();
+    ```
+
+    If `select()` is called without arguments, every column is projected. Multiple calls to `select()` for the same `Query` instance will result in projection corresponding to the final `select()` call.
+
+  * `where(where_clause): Query`<br>
+    applies selection operation (filtering of rows). `where_clause` (:`string`) is a valid SQL condition statements (do not put "WHERE condition" instead just put "condition"). 
+
+    ```JS
+    //database is a Database instance
+    database.getTable("sampleTable").query().select("username").where("age > 18").get();
+    ```
+
+    Multiple calls to `where()` result in rows that satisfy all the conditions.
+
+    ```JS
+    //database is a Database instance
+    database.getTable("sampleTable").query().where("age > 18").where("gender = 'F'").get();
+    //this is equivalent
+    database.getTable("sampleTable").query().where("age > 18 AND gender = 'F'").get();
+    ```
+
+    > The multiple `where()` calls result in a where class in the following way:<br>
+      ```JS 
+      ... query().where("cond1").where("cond2").where("cond3")...
+      ```
+      result to a SQL WHERE clause:
+      ```sql
+      WHERE (((cond1) AND cond2) AND cond3)...
+      ```
