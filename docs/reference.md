@@ -94,7 +94,7 @@ let query2 = database.getTable("sampleTable").query().select("id", "username", "
 ```
 
 #### Executing a query
-After the query is built, it can be run using `get()`, `insert()` or `delete()` methods.<br>
+After the query is built, it can be run using `get()`, `insert()`, `delete()`, etc. methods.<br>
 
 For example,
 ```JS
