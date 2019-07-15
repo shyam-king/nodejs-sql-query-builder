@@ -162,7 +162,7 @@
         }
 
         createTable(struct) {
-            this.struct.tables.append(struct);
+            this.struct.tables.push(struct);
             let q = `CREATE TABLE IF NOT EXISTS ${struct.name} (`;
             struct.columns.forEach((column, index, array) => {
                 q += `${column.name} ${column.type} ${(column.constraints != undefined)?column.constraints:""}`;
