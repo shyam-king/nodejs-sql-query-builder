@@ -202,9 +202,43 @@
         }
 
         updateStruct(struct) {
+            let found = false;
             this.struct.tables.forEach((element, index, array)=>{
                 if (element.name == struct.name) {
                     array[index] = struct;
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                this.struct.tables.push(struct);
+            }
+        }
+
+        updateDatabase() {
+            let tables = this.sql.query("SHOW TABLES;");
+            tables.forEach((t)=>{
+                let element = Object.values(t)[0];
+                if (element != "metadata")
+                {
+                    let tableDatabaseStructure = this.sql.query(`DESCRIBE ${element};`);
+                    let struct = {};
+                    struct.name = element;
+                    struct.columns = [];
+                    tableDatabaseStructure.forEach(col => {
+                        let ccol = {};
+                        ccol.name = col.Field;
+                        ccol.type = col.Type;
+                        if (col.Key.search(/PRI/) >= 0) {
+                            if (struct.primary_key) {
+                                struct.primary_key += `, ${col.name}`;
+                            }
+                            else 
+                                struct.primary_key = col.name;
+                        }
+                        struct.columns.push(ccol);
+                    });
+                    this.updateStruct(struct);
                 }
             });
         }

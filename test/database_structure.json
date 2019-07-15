@@ -1,5 +1,5 @@
 {
-    "version": "5",
+    "version": "6",
     "tables" : [
         {
             "name": "users",
@@ -17,8 +17,7 @@
                 {"name": "username", "type": "varchar(30)"},
                 {"name": "expiry", "type": "timestamp"}
             ],
-            "primary_key" : "token",
-            "constraints" : ["FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE ON UPDATE CASCADE"]
+            "primary_key" : "token"
         }
     ],
     "preupdate_queries":[]

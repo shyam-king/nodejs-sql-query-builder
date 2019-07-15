@@ -9,5 +9,7 @@ database.createTable(user_data);
 let users = database.getTable("users").query();
 let names = users.select("username");
 let ids = users.select("id");
-console.log(ids.where("id > 5").where("id < 7").get());
-console.log(ids.get());
+database.updateDatabase();
+
+let user_data_table = database.getTable("user_data").query();
+console.log(user_data_table.get());

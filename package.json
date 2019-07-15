@@ -1,6 +1,6 @@
 {
   "name": "sync-mysql-database",
-  "version": "1.4.2",
+  "version": "1.5.5",
   "description": "A class hierarchy to synchronously manage MySQL Database",
   "main": "main.js",
   "scripts": {
