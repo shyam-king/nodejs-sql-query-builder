@@ -8,6 +8,7 @@
             this.selection = '*';
             this.sql = sql;
             this.table = table_name;
+            this.Distinct = false;
         }
 
         select(... selection) {
@@ -53,7 +54,7 @@
         }
 
         get() {
-            this.query = `SELECT ${this.selection} FROM ${this.table}`;
+            this.query = `SELECT ${(this.Distinct?"DISTINCT": "")} ${this.selection} FROM ${this.table}`;
             if (this.where_clause) {
                 this.query += ` WHERE ${this.where_clause}`;
             }
@@ -136,6 +137,11 @@
         }
 
         getQuery() {
+            return Object.create(this);
+        }
+
+        distinct() {
+            this.Distinct = true;
             return Object.create(this);
         }
     }
