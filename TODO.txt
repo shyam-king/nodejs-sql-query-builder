@@ -1,3 +1,4 @@
 TODO: implement: Query.update
 TODO: update reference
 TODO: update reference for distinct()
+TODO: FIX: error thrown when preupdate_queries when not present
