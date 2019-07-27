@@ -159,6 +159,20 @@ query1.delete();
     ... query().select("userame", "id").orderby("username").orderby("id", "desc");
     ```
 
+  * `distinct(): Query`<br>
+    filters the rows such that there are no duplicate rows.
+
+    ```JS
+    ... query().selectAll().distinct().get();
+    ```
+
+  * `limit(offset, count): Query`<br>
+    limits the number of rows returned by `get()` to `count`, starting from `offset`.
+
+    ```JS
+    ... query().select("username").limit(0, 5).get();
+    ```
+
   * `get(): Array`<br>
     runs a SELECT query and returns the response.
 

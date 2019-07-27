@@ -1,4 +1,1 @@
 TODO: update reference
-TODO: update reference for update()
-TODO: update reference for distinct()
-TODO: update reference for limit()
