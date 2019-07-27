@@ -53,6 +53,12 @@
             return q;
         }
 
+        limit(offset, count) {
+            let q = this.getQuery();
+            q.limitClause = ` LIMIT ${offset}, ${count}`;
+            return q;
+        }
+
         get() {
             this.query = `SELECT ${(this.Distinct?"DISTINCT": "")} ${this.selection} FROM ${this.table}`;
             if (this.where_clause) {
@@ -60,6 +66,9 @@
             }
             if (this.order) {
                 this.query += ` ORDER BY ${this.order}`;
+            }
+            if (this.limitClause) {
+                this.query += this.limitClause;
             }
             this.query += ';';
             return this.sql.query(this.query);
