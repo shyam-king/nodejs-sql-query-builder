@@ -173,6 +173,12 @@ query1.delete();
     ... query().select("username").limit(0, 5).get();
     ```
 
+    > *Note: * `limit()` is usually used along with `orderby()`.
+      ```JS
+      //usernames of people with top 10 scores
+      ... query().select("username").orderby("scores", "desc").limit(0, 10).get(); 
+      ```
+
   * `get(): Array`<br>
     runs a SELECT query and returns the response.
 
