@@ -192,7 +192,7 @@
             } 
             else if (result[0].value != struct.version) {
                 sql.query(`UPDATE metadata SET value = '${struct.version}' WHERE field = 'version'`);
-                if (struct.preupdate_queries.length > 0) {
+                if (struct.preupdate_queries) {
                     struct.preupdate_queries.forEach((q) => {
                         sql.query(q);
                     });
